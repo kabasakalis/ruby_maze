@@ -15,12 +15,6 @@ module Maze
                           previous: nil
                            )
           rooms << room
-          # draw_room( room, ROOM_SIZE, 'blue' )
-          # draw_all_walls(room, color)
-          # left_wall = graphic.wall(room, 'left', 'red')
-          # right_wall = graphic.wall(room, 'right', 'red')
-          # up_wall = graphic.wall(room, 'up', 'red')
-          # down_wall = graphic.wall(room, 'down', 'red')
         end
       end
       end

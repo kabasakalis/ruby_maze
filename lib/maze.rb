@@ -3,26 +3,22 @@
 require 'ruby2d'
 require_relative "maze/version"
 require_relative "maze/graphic"
+require_relative "maze/room"
+require_relative "maze/maze"
+
 
 module Maze
   # Your code goes here...
-  def build
-    graphic = Maze::Graphic.new(width: 700 ,height:  500, title: 'My shitty Maze')
-    room = graphic.room(0, 0, 200, 'blue')
-    room2 = graphic.room(0, 200,  200, 'blue')
-    left_wall = graphic.wall(room, 'left', 'red')
-    right_wall = graphic.wall(room, 'right', 'green')
-    left_wall2 = graphic.wall(room2, 'left', 'red')
-    right_wall2 = graphic.wall(room2, 'right', 'green')
-    right_wall2_undo = graphic.wall(room2, 'right', 'blue')
-   graphic.show
-  end
-  module_function :build
 end
-Maze.build # =>
+maze = Maze::Maze.new(rows: 10, columns: 10)  # no=>
+# binding.pry
+
+# maze.find_room(3, 5)   # =>
+graphic = Maze::Graphic.new(width: 1000 ,height:  1000, title: 'My shitty Maze')
+graphic.draw_maze maze
 
 # ~> LoadError
-# ~> cannot load such file -- /tmp/seeing_is_believing_temp_dir20160605-16074-qg99nw/maze/version
+# ~> cannot load such file -- /tmp/seeing_is_believing_temp_dir20160605-31616-f8o41n/maze/version
 # ~>
-# ~> /tmp/seeing_is_believing_temp_dir20160605-16074-qg99nw/program.rb:4:in `require_relative'
-# ~> /tmp/seeing_is_believing_temp_dir20160605-16074-qg99nw/program.rb:4:in `<main>'
+# ~> /tmp/seeing_is_believing_temp_dir20160605-31616-f8o41n/program.rb:4:in `require_relative'
+# ~> /tmp/seeing_is_believing_temp_dir20160605-31616-f8o41n/program.rb:4:in `<main>'
