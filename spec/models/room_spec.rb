@@ -1,30 +1,45 @@
-
-# require 'rails_helper'
-
-describe Room  do
-
-  context 'initialize' do
-    true
-    # it { should validate_confirmation_of :password }
-    # it { should validate_uniqueness_of(:email).case_insensitive }
+require 'maze/room'
+describe Maze::Room  do
+  before :each do
+    @room = Maze::Room.new x: 4,
+    y: 13
   end
-
-  context 'context' do
-    true
+  context 'Initialized Room' do
+    [:x, :y, :visits, :available_exits].each do |method|
+      it "should respond to #{method}" do
+        expect( @room ).to respond_to(method)
+      end
+    end
   end
-
-
-  context '#issue_access_token' do
-    it 'creates access token belonging to user' do
-    #   user = create(:user)
-    #
-    #   expect do
-    #     access_token = user.issue_access_token
-    #     expect(access_token).to be_persisted
-    #     expect(access_token.user).to eq user
-    #     expect(user.access_tokens).to eq [access_token]
-    #   end.to change { AccessToken.count }.by(1)
-    # end
+  context 'Initialized Room should have values' do
+    it "x equal to 4" do
+        expect( @room.x ).to eql(4)
+    end
+    it "y equal to 13" do
+        expect( @room.y ).to eql(13)
+    end
+    it "visits array empty" do
+        expect( @room.visits ).to be_empty
+    end
+    it "available_exits array empty" do
+        expect( @room.available_exits ).to be_empty
+    end
+  end
+  context 'Exit is available to ' do
+    before :each do
+      @room.available_exits = [:left, :up ]
+    end
+    it "left? Yes." do
+        expect( @room.left? ).to be true
+    end
+    it "right? No." do
+        expect( @room.right? ).to be false
+    end
+    it "up? Yes." do
+        expect( @room.up? ).to be true
+    end
+    it "down? No." do
+        expect( @room.down? ).to be false
     end
   end
 end
