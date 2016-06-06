@@ -1,3 +1,4 @@
+require 'maze/room'
 module Maze
   class Maze
     # CON=13
@@ -10,9 +11,6 @@ module Maze
         (1..columns).each_with_index  do |column|
           room = Room.new(x: row,
                           y: column,
-                          times_visited: 0,
-                          current: false,
-                          previous: nil
                            )
           rooms << room
         end

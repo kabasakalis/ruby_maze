@@ -1,18 +1,22 @@
 module Maze
   class Room
-    attr_accessor :x, :y, :visits, :available_exits
+    attr_accessor :x, :y, :visits_from, :available_exits, :used_exits
     EXITS = [:left, :up, :right, :down]
     def initialize(options)
       @x = options[:x]
       @y = options[:y]
-      @visits = []
+      @visits_from = []
       @available_exits = []
+      @used_exits = []
     end
     EXITS.each do |exit|
       define_method "#{exit}?" do
         return true if available_exits.include?(exit)
         return false
       end
+    end
+    def visited?
+      self.visits_from.empty?
     end
   end
 end
