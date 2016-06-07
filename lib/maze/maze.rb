@@ -10,16 +10,15 @@ module Maze
       (1..rows).each_with_index do |row|
         (1..columns).each_with_index  do |column|
           room = Room.new(x: row,
-                          y: column,
-                           )
+            y: column,
+          )
           rooms << room
         end
       end
-      end
-      public
-      def find_room(x, y)
-        rooms.find {|room| room.x == x &&  room.y == y}
-      end
-
     end
+    def find_room(x, y)
+      rooms.find {|room| room.x == x &&  room.y == y}
+    end
+
   end
+end
