@@ -4,11 +4,12 @@ Position = Struct.new( :x, :y)
 module Maze
   class Builder
     # CON=13
-    attr_accessor  :maze, :current_position, :previous_position
+    attr_accessor  :maze, :current_position, :previous_position, :path
     def initialize(options)
       @maze = options[:maze]
       @current_position = Position.new( rand(1..maze.columns ), rand(1..maze.rows)) # =>
-      # @previous_position  Position.new
+      path = [ current_position ]
+      @previous_position =   Position.new
     end
     public
 
@@ -25,36 +26,36 @@ module Maze
       room current_position
     end
 
-    def move( direction )
-      check_next_room direction
-      case direction
-      when :left
-        current_position.x -= 1
-      when :right
-        current_position.x += 1
-      when :down
-        current_position.y += 1
-      when :up
-        current_position.y -= 1
-      else
+
+    def  next_position( direction, position)
+      return  case direction
+        when :left
+          ( position.x - 1 >= 0 ) ? Position.new( position.x - 1, position.y ) : nil
+        when :right
+          ( position.x + 1 <= maze.columns ) ? Position.new( position.x + 1, position.y ) : nil
+        when :down
+          ( position.y + 1 <= maze.rows ) ? Position.new( position.x, position.y + 1 ) : nil
+        when :up
+          ( position.y + 1 <= 0 ) ? Position.new( position.x, position.y - 1 ) : nil
+        else
+        end
+    end
+
+
+    [ :left, :up, :right, :down ].each do |direction|
+      define_method "room_#{direction}" do
+        room next_position(direction, current_position)
       end
     end
 
-    def check_next_room (direction)
-      next_room_position = case direction
-        when :left
-          Position.new( current_position.x - 1, current_position.y )
-        when :right
-          Position.new( current_position.x + 1, current_position.y )
-        when :down
-          Position.new( current_position.x, current_position.y + 1 )
-        when :up
-          Position.new( current_position.x, current_position.y - 1 )
-        else
-        end
-      next_room = room next_room_position
-    end
+    def valid_rooms_to_build
+      [ :left, :up, :right, :down ].inject([]) do |valid_rooms, direction|
+        room = self.send("room_#{direction }"
+        valid_rooms << room if room && !room.visited?
+        valid_rooms - [room(previous_position)] if room(previous_position)
+      end
 
+    end
 
   end
 end
