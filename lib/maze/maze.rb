@@ -1,4 +1,4 @@
-require 'maze/room'
+# require 'maze/room'
 module Maze
   class Maze
     # CON=13
@@ -18,6 +18,11 @@ module Maze
     end
     def find_room(x, y)
       rooms.find {|room| room.x == x &&  room.y == y}
+    end
+
+
+    def all_rooms_visited?
+      rooms.all?(&:visited?)
     end
 
   end

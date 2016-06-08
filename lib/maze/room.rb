@@ -1,6 +1,7 @@
+Position = Struct.new( :x, :y)
 module Maze
   class Room
-    attr_accessor :x, :y, :visits_from, :available_exits, :used_exits
+    attr_accessor :x, :y, :position, :visits_from, :available_exits, :used_exits
     EXITS = [:left, :up, :right, :down]
     def initialize(options)
       @x = options[:x]
@@ -8,6 +9,7 @@ module Maze
       @visits_from = []
       @available_exits = []
       @used_exits = []
+      @position = Position.new x, y
     end
     EXITS.each do |exit|
       define_method "#{exit}?" do
@@ -16,7 +18,7 @@ module Maze
       end
     end
     def visited?
-      self.visits_from.empty?
+      !self.visits_from.empty?
     end
   end
 end
