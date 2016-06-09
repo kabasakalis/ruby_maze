@@ -2,6 +2,7 @@
 require 'ruby2d'
 require 'pry'
 require_relative "room"
+
 module Maze
   class Graphic
     WALL_THICKNESS = 6
@@ -23,7 +24,8 @@ module Maze
     def draw_maze(maze)
       maze.rooms.each do |room|
         draw_room( room, ROOM_SIZE)
-        draw_all_walls(room, WALL_COLOR)
+        # draw_all_walls(room, WALL_COLOR)
+        draw_walls(room, WALL_COLOR)
       end
       show
     end
@@ -43,6 +45,15 @@ module Maze
         self.send :draw_wall,  room, side, color
       end
     end
+    def draw_walls(room, color)
+      ['left', 'right', 'up', 'down'].each do |side|
+        # binding.pry
+        if !room.available_exits.include?(side.to_sym)
+          self.send :draw_wall,  room, side, color
+        end
+      end
+    end
+
 
     def draw_wall(room ,side, color )
       canvas_x = to_canvas_coordinate(room.x)

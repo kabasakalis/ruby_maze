@@ -16,15 +16,11 @@ maze = Maze::Maze.new(rows: 10, columns: 10)  # no=>
 # binding.pry
 
 builder =Maze::Builder.new(maze: maze )
+# binding.pry
+
 builder.build_maze
-binding.pry
+# p maze
 
-
-
-
-
-
-
-# graphic = Maze::Graphic.new(width: 1000 ,height:  1000, title: 'My shitty Maze')
-# graphic.draw_maze maze
+graphic = Maze::Graphic.new(width: 1000 ,height:  1000, title: 'My shitty Maze')
+graphic.draw_maze maze
 

@@ -12,14 +12,14 @@ module Maze
     end
 
     def room( position )
-      maze.find_room position.x, position.y
+      maze.find_room position.x, position.y unless position.nil?
     end
     def current_room
       room current_position
     end
 
     def previous_position
-      path_without_revisits[ path_without_revisits.length - 2  ]
+      path_without_revisits[ path_without_revisits.length - 2  ] if path_without_revisits.length > 1
     end
 
 
@@ -31,13 +31,13 @@ module Maze
     def  next_position( direction, position)
       return  case direction
     when :left
-      ( position.x - 1 >= 0 ) ? Position.new( position.x - 1, position.y ) : nil
+      ( position.x - 1 >= 1 ) ? Position.new( position.x - 1, position.y ) : nil
     when :right
       ( position.x + 1 <= maze.columns ) ? Position.new( position.x + 1, position.y ) : nil
     when :down
       ( position.y + 1 <= maze.rows ) ? Position.new( position.x, position.y + 1 ) : nil
     when :up
-      ( position.y - 1 >= 0 ) ? Position.new( position.x, position.y - 1 ) : nil
+      ( position.y - 1 >= 1 ) ? Position.new( position.x, position.y - 1 ) : nil
     else
     end
   end
@@ -45,18 +45,25 @@ module Maze
 
   DIRECTIONS.each do |direction|
     define_method "room_#{direction}" do
-      room next_position(direction, current_position)
+      room next_position(direction, current_position )
     end
   end
 
   def valid_rooms_to_build
-    DIRECTIONS.inject([]) do |valid_rooms, direction|
+   rooms =  DIRECTIONS.inject([]) do |valid_rooms, direction|
+      # binding.pry
       _room = self.send("room_#{direction }")
-      valid_rooms << _room if _room && !_room.visited?
-      unless previous_position.nil?
-       return  (valid_rooms - [room(previous_position)])
+      if ( _room && !_room.visited? )
+        valid_rooms.push( _room )
+      else
+        valid_rooms
       end
-    end
+     end
+   previous_position.nil? ? rooms : ( rooms  - [room(previous_position)])
+   # binding.pry
+     # unless previous_position.nil?
+      #  return  (rooms  - [room(previous_position)])
+      # end
   end
 
   def build_next_room( next_room, exit_to_free)
@@ -70,19 +77,20 @@ module Maze
   def determine_direction( next_room)
     DIRECTIONS.each do |direction|
       room = self.send "room_#{direction.to_s}"
-      return direction if  room.position == next_room.position
+      return direction if (room && room.position == next_room.position)
     end
   end
   public
   def build_maze
     while !maze.all_rooms_visited? do
+      # binding.pry
       if !valid_rooms_to_build.empty?
         next_room = valid_rooms_to_build.sample
         direction = determine_direction next_room
         current_room.available_exits << direction
         build_next_room next_room, OPPOSITE_DIRECTION[ direction ]
       else
-        path_without_revisits.pop
+        path_without_revisits.pop if path_without_revisits.length >= 1
       end
     end
   end
