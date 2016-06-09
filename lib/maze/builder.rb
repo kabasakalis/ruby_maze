@@ -6,6 +6,7 @@ module Maze
     DIRECTIONS = OPPOSITE_DIRECTION.keys
     attr_accessor  :maze, :path, :path_without_revisits
     def initialize(options)
+
       @maze = options[:maze]
       @path = [Position.new( rand(1..maze.columns ), rand(1..maze.rows))]
       @path_without_revisits = @path
@@ -51,7 +52,6 @@ module Maze
 
   def valid_rooms_to_build
    rooms =  DIRECTIONS.inject([]) do |valid_rooms, direction|
-      # binding.pry
       _room = self.send("room_#{direction }")
       if ( _room && !_room.visited? )
         valid_rooms.push( _room )

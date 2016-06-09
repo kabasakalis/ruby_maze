@@ -5,27 +5,35 @@ require_relative "room"
 
 module Maze
   class Graphic
-    WALL_THICKNESS = 6
-    ROOM_SIZE = 100
-    ROOM_COLOR = 'blue'
-    WALL_COLOR = 'purple'
-    attr_accessor :width, :height, :title, :rooms
-    def initialize(options={})
-      @title = options[:title]
-      @width = options[:width]
-      @height = options[:height]
-      @rooms = options[:rooms]
+    WALL_THICKNESS = 2
+    ROOM_SIZE = 25
+    ROOM_COLOR = 'black'
+    WALL_COLOR = 'teal'
+    attr_reader :width, :height, :title, :rooms
+    attr_accessor :maze, :builder, :solver
+     def initialize(options={})
+      @maze = options[ :maze ]
+      @builder = options[ :builder ]
+      @solver = options[ :solver ]
+      @title = 'Ruby Maze by Spiros Kabasakalis'
+      @width =  maze.columns * ROOM_SIZE
+      @height = maze.rows * ROOM_SIZE
+      @rooms = maze.rooms
+
       set width: self.width, height: self.height, title: self.title
     end
-    def self.show
-      show
-    end
+    # def self.show
+    #   show
+    # end
 
     def draw_maze(maze)
       maze.rooms.each do |room|
         draw_room( room, ROOM_SIZE)
-        # draw_all_walls(room, WALL_COLOR)
-        draw_walls(room, WALL_COLOR)
+        if self.builder
+          draw_walls(room, WALL_COLOR)
+        else
+          draw_all_walls(room, WALL_COLOR)
+        end
       end
       show
     end

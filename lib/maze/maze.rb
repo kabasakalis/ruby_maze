@@ -6,11 +6,12 @@ module Maze
     def initialize(options)
       @rooms= []
       @rows = options[:rows]
+
       @columns = options[:columns]
       (1..rows).each_with_index do |row|
         (1..columns).each_with_index  do |column|
-          room = Room.new(x: row,
-            y: column,
+          room = Room.new(x: column,
+            y: row,
           )
           rooms << room
         end
