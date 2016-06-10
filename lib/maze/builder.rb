@@ -9,11 +9,11 @@ module Maze
 
       @maze = options[:maze]
       @path = [Position.new( rand(1..maze.columns ), rand(1..maze.rows))]
-      @path_without_revisits = @path
+      @path_without_revisits = @path.dup
     end
 
     def room( position )
-      maze.find_room position.x, position.y unless position.nil?
+      maze.find_room position unless position.nil?
     end
     def current_room
       room current_position
@@ -26,7 +26,6 @@ module Maze
 
     def current_position
       path_without_revisits.last
-
     end
 
     def  next_position( direction, position)
@@ -82,7 +81,9 @@ module Maze
   end
   public
   def build_maze
+
     while !maze.all_rooms_visited? do
+    # binding.pry if maze.rooms.count {|x| x.visited?} == 99
       # binding.pry
       if !valid_rooms_to_build.empty?
         next_room = valid_rooms_to_build.sample

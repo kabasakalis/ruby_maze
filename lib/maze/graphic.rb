@@ -9,6 +9,7 @@ module Maze
     ROOM_SIZE = 25
     ROOM_COLOR = 'black'
     WALL_COLOR = 'teal'
+    BUILDER_COLOR = 'gray'
     attr_reader :width, :height, :title, :rooms
     attr_accessor :maze, :builder, :solver
      def initialize(options={})
@@ -20,9 +21,10 @@ module Maze
       @height = maze.rows * ROOM_SIZE
       @rooms = maze.rooms
 
-      set width: self.width, height: self.height, title: self.title
+      set width: self.width, height: self.height, title: self.title, fps: 1
     end
     # def self.show
+     #
     #   show
     # end
 
@@ -35,7 +37,18 @@ module Maze
           draw_all_walls(room, WALL_COLOR)
         end
       end
-      show
+      # show
+    end
+
+    def draw_builder_path
+      builder.path.each do |position|
+        update do
+          _room = maze.find_room(position)
+          draw_walls(_room, WALL_COLOR)
+          draw_room(_room, ROOM_SIZE, BUILDER_COLOR )
+
+        end
+      end
     end
     def draw_room(room, size = ROOM_SIZE,color =  ROOM_COLOR)
       canvas_x = to_canvas_coordinate(room.x)

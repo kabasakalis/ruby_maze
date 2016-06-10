@@ -31,8 +31,26 @@ module Maze
   # Your code goes here...
 end
 # (40,73)max
-maze = Maze::Maze.new(rows: 40 , columns: 73 )  # no=>
+maze = Maze::Maze.new(rows: 20 , columns: 20 )  # no=>
+# builder.build_maze
 builder =Maze::Builder.new(maze: maze )
-builder.build_maze
 graphic = Maze::Graphic.new(maze: maze, builder: builder )
 graphic.draw_maze maze
+# show
+# graphic.draw_builder_path
+
+    builder.build_maze
+update do
+  # position = Position.new(rand(1..maze.rows),rand(1..maze.columns))
+  # room = maze.find_room(position)
+  # graphic.draw_room(room, 25, 'red')
+  position= builder.path.shift
+  if position
+  _room = maze.find_room(position)
+  graphic.draw_room(_room, Maze::Graphic::ROOM_SIZE,Maze::Graphic:: BUILDER_COLOR )
+  graphic.draw_walls(_room,Maze::Graphic::WALL_COLOR)
+  end
+end
+show
+graphic.draw_maze maze
+show

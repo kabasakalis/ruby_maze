@@ -17,8 +17,8 @@ module Maze
         end
       end
     end
-    def find_room(x, y)
-      rooms.find {|room| room.x == x &&  room.y == y}
+    def find_room(position)
+      rooms.find {|room| room.position == position }
     end
 
 
