@@ -19,6 +19,7 @@ module Maze
     end
     def find_room(position)
       rooms.find {|room| room.position == position }
+
     end
 
 
