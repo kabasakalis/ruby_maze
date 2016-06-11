@@ -39,7 +39,8 @@ graphic.draw_maze maze
 # show    # INITIALIZED MAZE
 # graphic.draw_builder_path
 
-    builder.build_maze
+    # builder.build_maze_like_a_robot
+builder.build_maze
 update do
   # position = Position.new(rand(1..maze.rows),rand(1..maze.columns))
   # room = maze.find_room(position)
