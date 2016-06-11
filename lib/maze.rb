@@ -1,5 +1,3 @@
-
-
 # lib = File.expand_path('../lib', __FILE__)
 require 'ruby2d'
 require "thor"
@@ -8,6 +6,7 @@ require_relative "maze/graphic"
 require_relative "maze/room"
 require_relative "maze/maze"
 require_relative "maze/builder"
+require_relative "maze/solver"
 
 class MazeInit < Thor
   include Thor::Actions
@@ -35,30 +34,11 @@ maze = Maze::Maze.new(rows: 10 , columns: 10  )  # no=>
 # builder.build_maze
 builder =Maze::Builder.new(maze: maze )
 graphic = Maze::Graphic.new(maze: maze, builder: builder )
+# binding.pry
 graphic.draw_maze maze
 # show    # INITIALIZED MAZE
 # graphic.draw_builder_path
 
-    # builder.build_maze_like_a_robot
 builder.build_maze
-update do
-  # position = Position.new(rand(1..maze.rows),rand(1..maze.columns))
-  # room = maze.find_room(position)
-  # graphic.draw_room(room, 25, 'red')
-
-  position= builder.path.shift
-  # pindex=builder.path.index {|p|p.x == position.x && p.y == position.y }
-  if position
-  _room = maze.find_room(position)
-  graphic.draw_room(_room, Maze::Graphic::ROOM_SIZE,Maze::Graphic:: BUILDER_COLOR )
-  graphic.draw_walls(_room,Maze::Graphic::WALL_COLOR)
-  # p=Text.new((position.x-1)*Maze::Graphic::ROOM_SIZE,(position.y-1)*Maze::Graphic::ROOM_SIZE,10,[position.x,position.y].join(',')  ,  'DroidSans','red')
-  p=Text.new((position.x-1)*Maze::Graphic::ROOM_SIZE+10,(position.y-1)*Maze::Graphic::ROOM_SIZE+10,10,builder.path.size.to_s,  'DroidSans','red')
-  end
-  sleep 0.5
-  # p=Text.new(position.x,position.y,10,'   ',  'DroidSans','black')
-end
+graphic.draw_builder_path
 show
-graphic.draw_maze maze
-show
-# p path if maze.rooms.count {|x| x.visited?} == maze.rows * maze.columns
