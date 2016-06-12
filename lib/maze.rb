@@ -8,6 +8,7 @@ require_relative "maze/maze"
 require_relative "maze/builder"
 require_relative "maze/solver"
 
+
 class MazeInit < Thor
   include Thor::Actions
   desc "hello NAME", "say hello to NAME"
@@ -33,12 +34,16 @@ end
 maze = Maze::Maze.new(rows: 10 , columns: 10  )  # no=>
 # builder.build_maze
 builder =Maze::Builder.new(maze: maze )
-graphic = Maze::Graphic.new(maze: maze, builder: builder )
-# binding.pry
-graphic.draw_maze maze
-# show    # INITIALIZED MAZE
-# graphic.draw_builder_path
-
+starting_position = Position.new( 1, 1)
+goal_position = Position.new( 10, 10)
+ solver = Maze::Solver.new(maze: maze, starting_position: starting_position, goal_position: goal_position)
 builder.build_maze
-graphic.draw_builder_path
+solver.solve_maze
+
+graphic = Maze::Graphic.new(maze: maze, builder: builder, solver: solver ) # binding.pry
+# graphic = Maze::Graphic.new(maze: maze, builder: builder ) # binding.pry
+graphic.draw_maze maze
+
+# graphic.draw_builder_path
+graphic.draw_solver_path
 show

@@ -40,13 +40,13 @@ module Maze
   end
 
   def room( position )
+
     maze.find_room position unless position.nil?
   end
 
   def current_room
     room current_position
   end
-
 
 
 
@@ -65,6 +65,7 @@ module Maze
 
 
 
+
   def valid_rooms_to_build
     rooms =  DIRECTIONS.inject([]) do |valid_rooms, direction|
       _room = self.send("room_#{direction }")
@@ -79,14 +80,14 @@ module Maze
 
   def build_room(_room, exit_to_free)
     _room.available_exits << exit_to_free
-    # _room.visits_from << exit_to_free
+    _room.visits_from << exit_to_free
   end
 
   public
   def build_maze
     while !maze.all_rooms_visited? do
-      # puts [current_position.x,current_position.y].inspect
-      # puts path.map{|p|[p.x,p.y]}.inspect
+      puts [current_position.x,current_position.y].inspect
+      puts path.map{|p|[p.x,p.y]}.inspect
       # binding.pry if maze.rooms.count {|x| x.visited?} == 99
       # p path if maze.rooms.count {|x| x.visited?} == maze.rows * maze.columns
       # binding.pry

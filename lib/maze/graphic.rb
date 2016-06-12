@@ -7,8 +7,8 @@ require_relative "room"
 module Maze
   class Graphic
 
-   COLORS = [ 'black', 'gray', 'silver', 'white', 'navy', 'blue', 'aqua', 'teal',
-    'olive', 'green', 'lime', 'yellow', 'orange', 'red', 'maroon', 'fuchsia',
+    COLORS = [ 'black', 'gray', 'silver', 'white', 'navy', 'blue', 'aqua', 'teal',
+      'olive', 'green', 'lime', 'yellow', 'orange', 'red', 'maroon', 'fuchsia',
     'purple', 'brown', 'random' ]
 
     WALL_THICKNESS = 2
@@ -62,8 +62,33 @@ module Maze
           draw_current_room_pointer _room
           _previous_room = maze.find_room(previous_position)
           draw_current_room_pointer(_previous_room, BUILDER_COLOR) if _previous_room
+          # binding.pry
+          # p=Text.new((position.x-1)*ROOM_SIZE+10,(position.y-1)*ROOM_SIZE+10,10,builder.path.size.to_s,  'DroidSans','red')
         end
         sleep 0.1
+      end
+    end
+
+
+    def draw_solver_path
+      visited_positions = []
+      color_room(solver.starting_position, ROOM_SIZE, 'red')
+      color_room(solver.goal_position, ROOM_SIZE, 'blue')
+      update do
+        previous_position = visited_positions.last
+        visited_positions << position = solver.path.shift
+
+        if position
+          _room = maze.find_room(position)
+          # draw_room(_room, ROOM_SIZE, BUILDER_COLOR )
+          # draw_walls(_room, WALL_COLOR)
+          draw_current_room_pointer _room
+          _previous_room = maze.find_room(previous_position)
+          draw_current_room_pointer(_previous_room, BUILDER_COLOR) if _previous_room
+          # binding.pry
+          p=Text.new((position.x-1)*ROOM_SIZE+10,(position.y-1)*ROOM_SIZE+10,10,builder.path.size.to_s,  'DroidSans','red')
+        end
+        # sleep 0.1
       end
     end
 
@@ -73,6 +98,14 @@ module Maze
       # binding.pry
       s = Square.new(canvas_x, canvas_y, size, color)    # Create a new square
     end
+
+    def color_room(room, size = ROOM_SIZE,color =  ROOM_COLOR)
+      canvas_x = to_canvas_coordinate(room.x)
+      canvas_y = to_canvas_coordinate(room.y)
+      # binding.pry
+      s = Square.new(canvas_x, canvas_y, size, color)    # Create a new square
+    end
+
 
     def to_canvas_coordinate(coord)
       ( coord - 1 ) * ROOM_SIZE
