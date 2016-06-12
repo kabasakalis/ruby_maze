@@ -1,6 +1,7 @@
 # lib = File.expand_path('../lib', __FILE__)
 require 'ruby2d'
 require "thor"
+require "ruby-progressbar"
 require_relative "maze/version"
 require_relative "maze/graphic"
 require_relative "maze/room"

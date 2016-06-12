@@ -4,6 +4,7 @@
 # require 'maze/maze'
 module Maze
   class Solver < Builder
+
     attr_accessor  :maze, :path, :visited_positions, :starting_position, :goal_position
     def initialize(options)
 
@@ -47,18 +48,11 @@ end
 
     public
     def solve_maze
-      # binding.pry
       reset_rooms_visits_from
-        # binding.pry
+        # binjjkding.pry
 
-        puts "SOLVER_PATH  #{ path.map{|p|[p.x,p.y]}.inspect}"
       until  current_position == goal_position  do
-        # if ( current_position.x==10 && current_position.y==10)
-# binding.pry
-        # end
-
-
-        puts [current_position.x,current_position.y].inspect
+        puts "Current Room: Row: #{current_position.y}, Column: #{current_position.y}"
         # binding.pry if maze.rooms.count {|x| x.visited?} == 99
         # p path if maze.rooms.count {|x| x.visited?} == maze.rows * maze.columns
         # binding.pry
@@ -80,6 +74,8 @@ end
         end
         # sleep 1
       end
+      puts "Solver Path:   #{ path.map{|p|[p.x,p.y]}.inspect}"
+      puts  "Maze Solved after #{path.size} steps"
     end
 
 

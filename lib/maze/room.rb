@@ -23,12 +23,6 @@ module Maze
       !self.visits_from.empty?
     end
 
-    # sef times_used_exit
-    #   available_exits.inject({}) do |times, exit|
-    #     times[exit] = @used_exits.count(exit)
-    #   end
-    # end
-
     def times_used_to_exits
      available_exits.group_by do |exit|
        used_exits.count(exit)
