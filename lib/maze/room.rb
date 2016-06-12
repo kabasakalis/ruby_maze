@@ -23,11 +23,11 @@ module Maze
       !self.visits_from.empty?
     end
 
-    def times_used_exit
-      available_exits.inject({}) do |times, exit|
-        times[exit] = @used_exits.count(exit)
-      end
-    end
+    # sef times_used_exit
+    #   available_exits.inject({}) do |times, exit|
+    #     times[exit] = @used_exits.count(exit)
+    #   end
+    # end
 
     def times_used_to_exits
      available_exits.group_by do |exit|
@@ -37,6 +37,10 @@ module Maze
 
     def less_used_available_exits
       times_used_to_exits[times_used_to_exits.keys.min]
+    end
+
+    def unused_available_exits
+      times_used_to_exits[0] || []
     end
 
   end

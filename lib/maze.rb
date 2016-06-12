@@ -31,11 +31,12 @@ module Maze
   # Your code goes here...
 end
 # (40,73)max
-maze = Maze::Maze.new(rows: 10 , columns: 10  )  # no=>
+maze = Maze::Maze.new(rows: 30 , columns: 30 )  # no=>
 # builder.build_maze
 builder =Maze::Builder.new(maze: maze )
 starting_position = Position.new( 1, 1)
-goal_position = Position.new( 10, 10)
+goal_position = Position.new( 30, 30)
+
  solver = Maze::Solver.new(maze: maze, starting_position: starting_position, goal_position: goal_position)
 builder.build_maze
 solver.solve_maze

@@ -86,8 +86,9 @@ module Maze
   public
   def build_maze
     while !maze.all_rooms_visited? do
-      puts [current_position.x,current_position.y].inspect
-      puts path.map{|p|[p.x,p.y]}.inspect
+      puts "Building #{maze.rows * maze.columns} rooms for maze"
+      # puts [current_position.x,current_position.y].inspect
+      # puts path.map{|p|[p.x,p.y]}.inspect
       # binding.pry if maze.rooms.count {|x| x.visited?} == 99
       # p path if maze.rooms.count {|x| x.visited?} == maze.rows * maze.columns
       # binding.pry

@@ -86,7 +86,7 @@ module Maze
           _previous_room = maze.find_room(previous_position)
           draw_current_room_pointer(_previous_room, BUILDER_COLOR) if _previous_room
           # binding.pry
-          p=Text.new((position.x-1)*ROOM_SIZE+10,(position.y-1)*ROOM_SIZE+10,10,builder.path.size.to_s,  'DroidSans','red')
+          p=Text.new((position.x-1)*ROOM_SIZE+10,(position.y-1)*ROOM_SIZE+10,10,solver.path.size.to_s,  'DroidSans','red')
         end
         # sleep 0.1
       end
