@@ -33,7 +33,7 @@ module Maze
     def solve_maze
       reset_rooms_visits_from
       until  current_position == goal_position  do
-        puts "Current Room: Row: #{current_position.y}, Column: #{current_position.y}"
+        # puts "Current Room: Row: #{current_position.y}, Column: #{current_position.y}"
         if  use_smart_strategy_to_choose_next_forward_move
           next_direction = use_smart_strategy_to_choose_next_forward_move
           next_room = self.send "room_#{ next_direction}"

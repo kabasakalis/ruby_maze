@@ -18,7 +18,7 @@ module Maze
     CURRENT_ROOM_POINTER_COLOR = 'yellow'
     CURRENT_ROOM_POINTER_SIZE = 6
 
-    attr_reader :width, :height, :title, :rooms
+    attr_reader :width, :height, :title, :rooms, :sleep
     attr_accessor :maze, :builder, :solver
 
     def initialize( options={} )
@@ -29,6 +29,8 @@ module Maze
       @width =  maze.columns * ROOM_SIZE
       @height = maze.rows * ROOM_SIZE
       @rooms = maze.rooms
+      @sleep =options[ :sleep ].to_f
+
       set width: self.width, height: self.height, title: self.title
     end
 
@@ -61,8 +63,8 @@ module Maze
           _previous_room = maze.find_room( previous_position )
           draw_position( _previous_room, BUILDER_COLOR ) if _previous_room
         end
-        sleep 0.1
       end
+        ::Kernel.sleep( @sleep || 0.0 )
     end
 
 
@@ -79,7 +81,7 @@ module Maze
           _previous_room = maze.find_room( previous_position )
           draw_position( _previous_room,CURRENT_ROOM_POINTER_SIZE ,'olive' ) if _previous_room
         end
-        # sleep 0.1
+        ::Kernel.sleep( @sleep || 0.0 )
       end
     end
 
