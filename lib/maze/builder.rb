@@ -1,7 +1,5 @@
 module Maze
   class Builder
-    OPPOSITE_DIRECTION = { left: :right, up: :down, right: :left, down: :up}
-    DIRECTIONS = OPPOSITE_DIRECTION.keys
     attr_reader  :maze, :path, :visited_positions
 
     def initialize(options)
@@ -20,26 +18,26 @@ module Maze
     end
 
     def previous_position
-      visited_positions[visited_positions.length - 2]
+      visited_positions[-2]
     end
 
     def go_back_to_previous_visited_room
       visited_positions.pop if visited_positions.length >= 1
     end
 
-    def  next_position( direction, position)
-        return  case direction
-      when :left
-        ( position.x - 1 >= 1 ) ? pos( position.x - 1, position.y ) : nil
-      when :right
-        ( position.x + 1 <= maze.columns ) ? pos( position.x + 1, position.y ) : nil
-      when :down
-        ( position.y + 1 <= maze.rows ) ? pos( position.x, position.y + 1 ) : nil
-      when :up
-        ( position.y - 1 >= 1 ) ? pos( position.x, position.y - 1 ) : nil
-      else
-        nil
-      end
+    def  next_position( direction, position )
+      return  case direction
+        when :left
+          ( position.x - 1 >= 1 ) ? pos( position.x - 1, position.y ) : nil
+        when :right
+          ( position.x + 1 <= maze.columns ) ? pos( position.x + 1, position.y ) : nil
+        when :down
+          ( position.y + 1 <= maze.rows ) ? pos( position.x, position.y + 1 ) : nil
+        when :up
+          ( position.y - 1 >= 1 ) ? pos( position.x, position.y - 1 ) : nil
+        else
+          nil
+        end
     end
 
     def room( position )
@@ -50,19 +48,20 @@ module Maze
       room current_position
     end
 
-    DIRECTIONS.each do |direction|
+   DIRECTIONS.each do |direction|
       define_method "room_#{direction}" do
         room next_position(direction, current_position )
       end
     end
 
-    def determine_direction( next_room)
+    def determine_direction( next_room )
       DIRECTIONS.each do |direction|
-        room = self.send "room_#{direction.to_s}"
-        return direction if (room && room.position == next_room.position)
+        room = self.send "room_#{ direction.to_s }"
+        return direction if ( room && room.position == next_room.position )
       end
     end
 
+    #Look for surrounding rooms that have not been built yet.
     def valid_rooms_to_build
       rooms =  DIRECTIONS.inject([]) do |valid_rooms, direction|
         _room = self.send("room_#{direction }")
@@ -84,17 +83,17 @@ module Maze
     def build_maze
       puts "Now building #{maze.rows * maze.columns} rooms for maze."
       puts "Please Wait."
-      while !maze.all_rooms_visited? do
+      until maze.all_rooms_visited? do
         if !valid_rooms_to_build.empty?
           next_room = valid_rooms_to_build.sample
           direction = determine_direction next_room
           build_room current_room, direction
-          path << next_room.position ######################
+          path << next_room.position
           visited_positions << next_room.position
           build_room next_room, OPPOSITE_DIRECTION[ direction ]
         else
           go_back_to_previous_visited_room
-          path << current_room.position ######################
+          path << current_room.position
         end
       end
       puts "Builder Path:   #{ path.map{|p|[p.x,p.y]}.inspect}"
