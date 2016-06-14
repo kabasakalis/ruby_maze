@@ -1,11 +1,11 @@
 module Maze
   class Maze
+
     attr_reader :rooms, :rows, :columns
 
     def initialize(options)
       @rooms = []
       @rows = options[:rows]
-
       @columns = options[:columns]
       (1..rows).each_with_index do |row|
         (1..columns).each_with_index  do |column|

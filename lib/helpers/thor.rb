@@ -1,4 +1,3 @@
-
 def say_with_tag(text,tag); say "\033[1m\033[36m" + tag.to_s.rjust(10) + "\033[0m" + "  #{text}" end
 
 def ask_with_tag(question,tag)
@@ -29,19 +28,3 @@ def multiple_choice(question, choices)
 end
 
 
-
-
-def middleman
-
-
-  @middleman_folder = ask_with_tag('What is the name of the middleman folder?Usually it\'s middleman or frontend.','middleman')
-  while !File.exists?("#{@middleman_folder}") do
-  @middleman_folder = ask_with_tag('Middleman folder not found.Make sure there is a middleman folder in the root of your project (named middleman of frontend usually),and type the name.','middleman')
-  end
-
-  @middleman_source_folder = ask_with_tag('What is the name of the middleman source folder?Usually it\'s source or src.','middleman')
-  while !File.exists?("#{@middleman_folder}/#{@middleman_source_folder}") || @middleman_source_folder.blank?  do
-  @middleman_source_folder = ask_with_tag('Middleman source folder not found.Usually it\'s source or src.Please check your middleman folder for the correct name:','middleman')
-  end
-
-end
