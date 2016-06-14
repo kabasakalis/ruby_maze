@@ -49,23 +49,34 @@ module Maze
       end
     end
 
+def draw_builder_path
+      builder.path.each do |position|
+        update do
+          _room = maze.find_room(position)
+          draw_walls(_room, WALL_COLOR)
+          draw_room(_room, ROOM_SIZE, BUILDER_COLOR )
+          ::Kernel.sleep( @sleep || 0.0 )
 
-    def draw_builder_path
-      visited_positions = []
-      update do
-        previous_position = visited_positions.last
-        visited_positions << position = builder.path.shift
-        if position
-          _room = maze.find_room( position )
-          draw_room( _room, ROOM_SIZE, BUILDER_COLOR )
-          draw_walls( _room, WALL_COLOR )
-          draw_position _room
-          _previous_room = maze.find_room( previous_position )
-          draw_position( _previous_room, BUILDER_COLOR ) if _previous_room
         end
       end
-        ::Kernel.sleep( @sleep || 0.0 )
     end
+
+
+    #   visited_positions = []
+    #   update do
+    #     previous_position = visited_positions.last
+    #     visited_positions << position = builder.path.shift
+    #     if position
+    #       _room = maze.find_room( position )
+    #       draw_room( _room, ROOM_SIZE, BUILDER_COLOR )
+    #       draw_walls( _room, WALL_COLOR )
+    #       draw_position _room
+    #       _previous_room = maze.find_room( previous_position )
+    #       draw_position( _previous_room,CURRENT_ROOM_POINTER_SIZE,  BUILDER_COLOR ) if _previous_room
+    #     end
+    #   end
+    #     ::Kernel.sleep( @sleep || 0.0 )
+    # end
 
 
     def draw_solver_path
@@ -86,6 +97,7 @@ module Maze
     end
 
     def draw_position( room, position_size = CURRENT_ROOM_POINTER_SIZE,  color = CURRENT_ROOM_POINTER_COLOR )
+      # binding.pry if color == 'black'
       pointer_x = to_canvas_coordinate(room.x)
       pointer_y = to_canvas_coordinate(room.y)
       pointer = Square.new(pointer_x + ROOM_SIZE/2 -  position_size/2,
