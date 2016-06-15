@@ -23,6 +23,9 @@ describe Maze::Builder  do
     it "should not have an empty builder path" do
       expect( @builder.path ).to_not eq( [] )
     end
+    it "all rooms should have at least one exit." do
+      expect( @builder.maze.rooms.none?{|room|room.available_exits.empty?} ).to be true
+    end
   end
 
 end
