@@ -10,6 +10,7 @@ module Maze
       @visited_positions = @path.dup
     end
 
+    private
     # Reset visits from builder.
     def reset_rooms_visits_from
       maze.rooms.each { |room| room.visits_from = []}

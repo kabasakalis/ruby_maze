@@ -1,11 +1,10 @@
-require 'maze/room'
+require 'spec_helper'
 describe Maze::Room  do
   before :each do
-    @room = Maze::Room.new x: 4,
-    y: 13
+    @room = Maze::Room.new x: 4, y: 13
   end
   context 'Initialized Room' do
-    [:x, :y, :visits_from, :available_exits, :used_exits].each do |method|
+    [:x, :y, :visits_from, :available_exits, :used_exits, :position].each do |method|
       it "should respond to #{method}" do
         expect( @room ).to respond_to(method)
       end
@@ -48,6 +47,34 @@ describe Maze::Room  do
         expect( @room.down? ).to be false
     end
 
+  end
+
+  context 'visited?'  do
+    it "unvisited" do
+      @room.visits_from = []
+      expect( @room.visited? ).to be false
+    end
+    it "visited" do
+      @room.visits_from = [:left, :right]
+      expect( @room.visited? ).to be true
+    end
+  end
+  context 'Keep statistics'  do
+    before :each do
+      @room.available_exits = [:left, :up, :down ]
+      @room.used_exits = [:left, :up, :up, :left, :up, :left, :left, :down]
+    end
+    it "times_used_to_exits" do
+      expect( @room.times_used_to_exits[1]).to eq( [:down])
+      expect( @room.times_used_to_exits[4]).to eq( [:left] )
+      expect( @room.times_used_to_exits[3]).to eq( [:up] )
+    end
+    it "less_used_available_exits" do
+      expect( @room.less_used_available_exits ).to eq( [:down] )
+    end
+    it "unused_available_exits" do
+      expect( @room.unused_available_exits ).to eq( [] )
+    end
   end
 
 end

@@ -41,7 +41,7 @@ Gem::Specification.new do |spec|
 
 
   spec.add_development_dependency "thor"
-  spec.add_development_dependency "ruby-progressbar"
+  spec.add_development_dependency "ruby2d"
 end
 
 
