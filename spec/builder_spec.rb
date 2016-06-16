@@ -1,13 +1,13 @@
 require 'spec_helper'
-describe Maze::Builder  do
+describe Maze::Builder do
   before :all do
-    @maze = Maze::Maze.new( rows: 10, columns: 10)
-    @builder = Maze::Builder.new( maze: @maze )
+    @maze = Maze::Maze.new(rows: 10, columns: 10)
+    @builder = Maze::Builder.new(maze: @maze)
   end
   context 'Initialized Builder' do
     [:maze, :path, :visited_positions].each do |method|
       it "should respond to #{method}" do
-        expect( @builder ).to respond_to(method)
+        expect(@builder).to respond_to(method)
       end
     end
   end
@@ -16,16 +16,15 @@ describe Maze::Builder  do
     before :all do
       @builder.build_maze
     end
-    it "should have all rooms visited by the builder" do
-      expect( @builder.maze.rooms.all?{|room| !room.visits_from.empty? } ).to be true
+    it 'should have all rooms visited by the builder' do
+      expect(@builder.maze.rooms.all? { |room| !room.visits_from.empty? }).to be true
     end
 
-    it "should not have an empty builder path" do
-      expect( @builder.path ).to_not eq( [] )
+    it 'should not have an empty builder path' do
+      expect(@builder.path).to_not eq([])
     end
-    it "all rooms should have at least one exit." do
-      expect( @builder.maze.rooms.none?{|room|room.available_exits.empty?} ).to be true
+    it 'all rooms should have at least one exit.' do
+      expect(@builder.maze.rooms.none? { |room| room.available_exits.empty? }).to be true
     end
   end
-
 end

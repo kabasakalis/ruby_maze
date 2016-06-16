@@ -1,4 +1,5 @@
-Position = Struct.new( :x, :y)
+Position = Struct.new(:x, :y)
+
 module Maze
   class Room
     attr_accessor :x, :y, :position, :visits_from, :available_exits, :used_exits
@@ -20,23 +21,21 @@ module Maze
     end
 
     def visited?
-      !self.visits_from.empty?
+      !visits_from.empty?
     end
 
     def times_used_to_exits
-     available_exits.group_by do |exit|
-       used_exits.count( exit )
-     end
+      available_exits.group_by do |exit|
+        used_exits.count(exit)
+      end
     end
 
     def less_used_available_exits
-      times_used_to_exits[ times_used_to_exits.keys.min ]
+      times_used_to_exits[times_used_to_exits.keys.min]
     end
 
     def unused_available_exits
       times_used_to_exits[0] || []
     end
-
   end
 end
-
