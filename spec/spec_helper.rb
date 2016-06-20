@@ -7,7 +7,7 @@ require 'pry'
 require 'maze'
 
 require 'maze/version'
-require 'maze/canvas'
+# require 'maze/canvas'
 require 'maze/room'
 require 'maze/maze'
 require 'maze/builder'
