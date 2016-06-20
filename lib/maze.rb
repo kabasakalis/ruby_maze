@@ -1,5 +1,4 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'ruby2d'
 require 'thor'
 require 'logger'
 require 'pry'
