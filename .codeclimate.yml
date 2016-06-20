@@ -1,25 +1,22 @@
 ---
 engines:
   duplication:
-    enabled: true
+    enabled: false
     config:
       languages:
       - ruby
-      - javascript
-      - python
-      - php
   fixme:
     enabled: true
   rubocop:
     enabled: true
+    checks:
+      Rubocop/Style/ClassAndModuleChildren:
+        enabled: false
+     Rubocop/Metrics/CyclomaticComplexity:
+        enabled: false
 ratings:
   paths:
-  - "**.inc"
-  - "**.js"
-  - "**.jsx"
-  - "**.module"
-  - "**.php"
-  - "**.py"
+  - lib/**
   - "**.rb"
 exclude_paths:
 - spec/
