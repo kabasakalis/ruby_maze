@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/drumaddict/ruby-maze.svg?branch=master)](https://travis-ci.org/drumaddict/ruby-maze)
 # Ruby Maze
 ----
 ### Overview
@@ -6,6 +7,7 @@
 ###### A 73 x 40 Maze being solved
 
 ![screenshot](https://github.com/drumaddict/ruby-maze/blob/master/assets/maze.png)
+
 ## Prerequisites
 ### [Ruby 2D gem](http://www.ruby2d.com/)
 Simple 2D applications with Ruby. The gem is already a gemspec dependency, just run `bundle install`
@@ -15,8 +17,8 @@ You will need only one system dependency: a graphics and media library called Si
 * On Linux, install this library by following [these](https://github.com/simple2d/simple2d#welcome-to-simple-2d) instructions.
 ## Usage
 First, make sure Simple 2D is installed in your system, then install the required gem dependencies with `bundle install`
-* To build a maze (without solving it), run in the root of the project:  `ruby 'lib/maze.rb'  build`
-* To build  and solve a maze, run in the root of the project:  `ruby 'lib/maze.rb' solve`
+* To build a maze (without solving it), run in the root of the project:  `ruby 'lib/maze_init.rb'  build`
+* To build  and solve a maze, run in the root of the project:  `ruby 'lib/maze_init.rb' solve`
 
 In both cases you will be asked for parameters (maze dimensions, animation speed, start and goal positions)
 ## License
