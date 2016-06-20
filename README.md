@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/drumaddict/ruby-maze.svg?branch=master&a=1)](https://travis-ci.org/drumaddict/ruby-maze)
 [![Code Climate](https://codeclimate.com/github/drumaddict/ruby-maze/badges/gpa.svg)](https://codeclimate.com/github/drumaddict/ruby-maze)
-[![Test Coverage](https://codeclimate.com/github/drumaddict/ruby-maze/badges/coverage.svg)](https://codeclimate.com/github/drumaddict/ruby-maze/coverage)
+[![Test Coverage](https://codeclimate.com/github/drumaddict/ruby-maze/badges/coverage.svg&a=2)](https://codeclimate.com/github/drumaddict/ruby-maze/coverage)
 # Ruby Maze
 ----
 ### Overview
