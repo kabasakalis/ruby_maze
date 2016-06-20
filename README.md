@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/drumaddict/ruby-maze.svg?branch=master)](https://travis-ci.org/drumaddict/ruby-maze)
 # Ruby Maze
+
 ----
 ### Overview
  Building and solving a maze is a popular code challenge in almost every programming language.
