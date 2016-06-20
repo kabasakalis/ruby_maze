@@ -12,7 +12,7 @@ require 'maze/room'
 require 'maze/maze'
 require 'maze/builder'
 require 'maze/solver'
-require 'helpers/thor.rb'
+# require 'helpers/thor.rb'
 
 RSpec.configure do |_config|
   # some (optional) config here

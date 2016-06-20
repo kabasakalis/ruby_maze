@@ -1,3 +1,4 @@
+require 'ruby2d'
 module Maze
   class Canvas
     COLORS = %w(black gray silver white navy blue aqua teal
