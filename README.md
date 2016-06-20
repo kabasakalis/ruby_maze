@@ -4,7 +4,8 @@
  Building and solving a maze is a popular code challenge in almost every programming language.
  This is my take.
 ###### A 73 x 40 Maze being solved
-![screenshot]( https://bytebucket.org/drumaddict/maze/raw/cc3b7a0b8874d78abae5cdd2d6c92d3df872a4cb/assets/maze.png?token=3b305dc69cfc36eb300efa49f79bbd11f805e076)
+
+![screenshot](https://github.com/drumaddict/ruby-maze/blob/master/assets/maze.png)
 ## Prerequisites
 ### [Ruby 2D gem](http://www.ruby2d.com/)
 Simple 2D applications with Ruby. The gem is already a gemspec dependency, just run `bundle install`
