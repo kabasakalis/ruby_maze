@@ -17,7 +17,9 @@ Simple 2D applications with Ruby. The gem is already a gemspec dependency, just 
 You will need only one system dependency: a graphics and media library called Simple 2D.
 * On OS X, the Ruby 2D gem will use Homebrew to install this library. You don't have to use Homebrew, but it makes things much simpler. Check out the [simple2d.rb formula](https://github.com/simple2d/homebrew-tap/blob/master/simple2d.rb) to see exactly what gets installed.
 * On Linux, install this library by following [these](https://github.com/simple2d/simple2d#welcome-to-simple-2d) instructions.
+
 ## Usage
+
 First, make sure Simple 2D is installed in your system, then install the required gem dependencies with `bundle install`
 * To build a maze (without solving it), run in the root of the project:  `ruby 'lib/maze_init.rb'  build`
 * To build  and solve a maze, run in the root of the project:  `ruby 'lib/maze_init.rb' solve`
