@@ -16,7 +16,8 @@ Simple 2D applications with Ruby. The gem is already a gemspec dependency, just 
 ### [Simple 2D](https://github.com/simple2d/simple2d)
 You will need only one system dependency: a graphics and media library called Simple 2D.
 * On OS X, the Ruby 2D gem will use Homebrew to install this library. You don't have to use Homebrew, but it makes things much simpler. Check out the [simple2d.rb formula](https://github.com/simple2d/homebrew-tap/blob/master/simple2d.rb) to see exactly what gets installed.
-* On Linux, install this library by following [these](https://github.com/simple2d/simple2d#welcome-to-simple-2d) instructions.
+* On Linux, at the root of the project run `simple2d install`
+or follow [these](https://github.com/simple2d/simple2d#welcome-to-simple-2d) instructions.
 
 ## Usage
 
