@@ -29,5 +29,6 @@ First, make sure Simple 2D is installed in your system, then install the require
 In both cases you will be asked for parameters (maze dimensions, animation speed, start and goal positions)
 ## License
 
+
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
