@@ -4,7 +4,7 @@ rvm:
 before_install: gem install bundler -v 1.11.2
 bundler_args: --without visual
 script:
-  - CODECLIMATE_REPO_TOKEN=24ec68be26fb0b38023ef4dd768fdc4cf89148d2c2fe89830501c52fd31764b4 bundle exec rake
+  - CODECLIMATE_REPO_TOKEN=92a88ea7fed1022e2d0e9a3879f4937be99e94ca bundle exec rake
 addons:
   code_climate:
-    repo_token: 24ec68be26fb0b38023ef4dd768fdc4cf89148d2c2fe89830501c52fd31764b4
+    repo_token: 92a88ea7fed1022e2d0e9a3879f4937be99e94ca
