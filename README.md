@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/drumaddict/ruby-maze.svg?branch=master&a=1)](https://travis-ci.org/kabasakalis/ruby-maze)
-[![Code Climate](https://codeclimate.com/github/drumaddict/ruby-maze/badges/gpa.svg)](https://codeclimate.com/github/drumaddict/ruby-maze)
-[![Test Coverage](https://codeclimate.com/github/drumaddict/ruby-maze/badges/coverage.svg)](https://codeclimate.com/github/drumaddict/ruby-maze/coverage)
+[![Build Status](https://travis-ci.org/drumaddict/ruby_maze.svg?branch=master&a=1)](https://travis-ci.org/kabasakalis/ruby_maze)
+[![Code Climate](https://codeclimate.com/github/drumaddict/ruby_maze/badges/gpa.svg)](https://codeclimate.com/github/kabasakalis/ruby_maze)
+[![Test Coverage](https://codeclimate.com/github/drumaddict/ruby_maze/badges/coverage.svg)](https://codeclimate.com/github/kabasakalis/ruby_maze/coverage)
 # Ruby Maze
 ----
 ### Overview
@@ -8,7 +8,7 @@
  This is my take.
 ###### A 73 x 40 Maze being solved
 
-![screenshot](https://github.com/drumaddict/ruby-maze/blob/master/assets/maze.png)
+![screenshot](https://github.com/kabasakalis/ruby_maze/blob/master/assets/maze.png)
 
 ## Prerequisites
 ### [Ruby 2D gem](http://www.ruby2d.com/)
