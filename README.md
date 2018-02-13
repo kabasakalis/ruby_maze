@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/drumaddict/ruby_maze.svg?branch=master&a=1)](https://travis-ci.org/kabasakalis/ruby_maze)
-[![Code Climate](https://codeclimate.com/github/drumaddict/ruby_maze/badges/gpa.svg)](https://codeclimate.com/github/kabasakalis/ruby_maze)
-[![Test Coverage](https://codeclimate.com/github/drumaddict/ruby_maze/badges/coverage.svg)](https://codeclimate.com/github/kabasakalis/ruby_maze/coverage)
+[![Build Status](https://travis-ci.org/kabasakalis/ruby_maze.svg?branch=master&a=1)](https://travis-ci.org/kabasakalis/ruby_maze)
+[![Code Climate](https://codeclimate.com/github/kabasakalis/ruby_maze/badges/gpa.svg)](https://codeclimate.com/github/kabasakalis/ruby_maze)
+[![Test Coverage](https://codeclimate.com/github/kabasakalis/ruby_maze/badges/coverage.svg)](https://codeclimate.com/github/kabasakalis/ruby_maze/coverage)
 # Ruby Maze
 ----
 ### Overview
